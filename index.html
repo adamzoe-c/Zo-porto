@@ -9,36 +9,42 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --paper: #FFFFFF;
-  --paper-2: #F0F0F0;
-  --ink: #111111;
-  --ink-soft: #5B5B5B;
-  --accent: #111111;
-  --accent-2: #000000;
-  --line: #CFCFCF;
-  --shadow: rgba(0,0,0,0.12);
+  --paper: #F5F1FB;
+  --paper-2: #ECE5F7;
+  --ink: #241A3D;
+  --ink-soft: #6A5F87;
+  --accent: #FF6152;
+  --accent-2: #E14634;
+  --teal: #16A38A;
+  --gold: #F2A93B;
+  --line: #DBD3EE;
+  --shadow: rgba(36,26,61,0.14);
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --paper: #0E0E0E;
-    --paper-2: #1A1A1A;
-    --ink: #F5F5F5;
-    --ink-soft: #A6A6A6;
-    --accent: #F5F5F5;
-    --accent-2: #FFFFFF;
-    --line: #333333;
-    --shadow: rgba(0,0,0,0.5);
+    --paper: #191330;
+    --paper-2: #221B3D;
+    --ink: #F3EFFB;
+    --ink-soft: #AFA5CC;
+    --accent: #FF8A72;
+    --accent-2: #FFA98F;
+    --teal: #34D8B8;
+    --gold: #F9C463;
+    --line: #362C57;
+    --shadow: rgba(0,0,0,0.45);
   }
 }
 :root[data-theme="dark"] {
-  --paper: #0E0E0E;
-  --paper-2: #1A1A1A;
-  --ink: #F5F5F5;
-  --ink-soft: #A6A6A6;
-  --accent: #F5F5F5;
-  --accent-2: #FFFFFF;
-  --line: #333333;
-  --shadow: rgba(0,0,0,0.5);
+  --paper: #191330;
+  --paper-2: #221B3D;
+  --ink: #F3EFFB;
+  --ink-soft: #AFA5CC;
+  --accent: #FF8A72;
+  --accent-2: #FFA98F;
+  --teal: #34D8B8;
+  --gold: #F9C463;
+  --line: #362C57;
+  --shadow: rgba(0,0,0,0.45);
 }
 
 * { box-sizing: border-box; }
@@ -77,14 +83,39 @@ nav {
 
 /* Hero */
 .hero {
-  padding-top: clamp(72px, 14vw, 140px);
-  padding-bottom: clamp(48px, 10vw, 96px);
+  position: relative;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  min-height: 92vh;
+  display: flex;
+  align-items: flex-end;
+  color: #FFFFFF;
+  overflow: hidden;
 }
-.hero-eyebrow { font-size: 0.95rem; color: var(--ink-soft); margin-bottom: 18px; }
+.hero-bg {
+  position: absolute; inset: 0;
+  background-image: url('assets/hero.jpg');
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+.hero-bg::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(21,13,38,0.20) 0%, rgba(21,13,38,0.70) 68%, rgba(21,13,38,0.94) 100%);
+}
+.hero-content {
+  position: relative; z-index: 1;
+  max-width: 1080px; margin: 0 auto; width: 100%;
+  padding: clamp(28px, 6vw, 56px) clamp(20px, 6vw, 64px) clamp(56px, 10vw, 96px);
+}
+.hero-eyebrow { font-size: 0.95rem; color: rgba(255,255,255,0.75); margin-bottom: 18px; }
 .hero h1 {
   font-size: clamp(3.2rem, 12vw, 7.5rem);
   line-height: 0.92;
   display: flex; flex-direction: column;
+  color: #FFFFFF;
 }
 .hero h1 span {
   opacity: 0;
@@ -94,25 +125,16 @@ nav {
 .hero h1 span:nth-child(2) {
   animation-delay: 0.12s;
   font-style: italic;
-  color: #E0923C;
+  color: var(--accent);
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .hero h1 span:nth-child(2) { color: #F0A94E; }
-}
-:root[data-theme="dark"] .hero h1 span:nth-child(2) { color: #F0A94E; }
 @keyframes rise { to { opacity: 1; transform: translateY(0); } }
 @media (prefers-reduced-motion: reduce) {
   .hero h1 span { animation: none; opacity: 1; transform: none; }
 }
-.hero-sub { margin-top: 28px; max-width: 42ch; font-size: 1.1rem; }
+.hero-sub { margin-top: 28px; max-width: 42ch; font-size: 1.1rem; color: rgba(255,255,255,0.82); }
 .hero-links { margin-top: 36px; display: flex; gap: 20px; flex-wrap: wrap; }
-.hero-image {
-  margin-top: clamp(48px, 9vw, 88px);
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 24px 60px -28px var(--shadow);
-}
-.hero-image img { display: block; width: 100%; height: auto; max-height: 70vh; object-fit: cover; }
+.hero-links .pill:not(.solid) { border-color: rgba(255,255,255,0.55); color: #FFFFFF; }
+.hero-links .pill:not(.solid):hover { border-color: #FFFFFF; color: #FFFFFF; background: rgba(255,255,255,0.08); }
 
 .pill {
   display: inline-flex; align-items: center; gap: 8px;
@@ -124,9 +146,9 @@ nav {
   color: var(--ink);
   transition: border-color 0.2s, background 0.2s;
 }
-.pill.solid { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-.pill:hover { border-color: var(--ink); }
-.pill.solid:hover { background: var(--accent-2); border-color: var(--accent-2); }
+.pill.solid { background: var(--accent); color: #FFFFFF; border-color: var(--accent); }
+.pill:hover { border-color: var(--accent); color: var(--accent); }
+.pill.solid:hover { background: var(--accent-2); border-color: var(--accent-2); color: #FFFFFF; }
 
 /* Section headers */
 .sec-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 48px; flex-wrap: wrap; }
@@ -157,12 +179,12 @@ nav {
 .case-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
 .tag {
   font-size: 0.78rem; padding: 4px 11px; border-radius: 999px;
-  background: var(--paper-2); color: var(--ink-soft); border: 1px solid var(--line);
+  background: var(--paper-2); color: var(--teal); border: 1px solid var(--line);
 }
 .case-link {
   display: inline-flex; align-items: center; gap: 6px;
   margin-top: 18px; font-size: 0.92rem; text-decoration: none;
-  border-bottom: 1px solid var(--ink); padding-bottom: 2px; color: var(--ink);
+  border-bottom: 1px solid var(--accent); padding-bottom: 2px; color: var(--ink);
 }
 .case-soon {
   padding: 28px 0; border-top: 1px solid var(--line);
@@ -203,7 +225,7 @@ nav {
 .contact-list .contact-row:last-child { border-bottom: 1px solid var(--line); }
 .contact-row .label { color: var(--ink-soft); font-size: 0.92rem; }
 .contact-row .value { font-family: 'Fraunces', serif; font-size: 1.15rem; }
-.contact-row .arrow { color: var(--ink); opacity: 0; transition: opacity 0.2s, transform 0.2s; transform: translateX(-4px); }
+.contact-row .arrow { color: var(--accent); opacity: 0; transition: opacity 0.2s, transform 0.2s; transform: translateX(-4px); }
 .contact-row:hover .arrow { opacity: 1; transform: translateX(0); }
 
 footer {
@@ -229,18 +251,18 @@ a:focus-visible, .pill:focus-visible { outline: 2px solid var(--ink); outline-of
 </nav>
 
 <section class="hero">
-  <div class="hero-eyebrow">Zoé Adam</div>
-  <h1>
-    <span>Design that</span>
-    <span>holds up in code.</span>
-  </h1>
-  <p class="hero-sub">Graphic designer and web developer. I build brand and web work end to end — from the first sketch to a site that actually ships.</p>
-  <div class="hero-links">
-    <a class="pill solid" href="work.html">See the work</a>
-    <a class="pill" href="contact.html">Get in touch</a>
-  </div>
-  <div class="hero-image">
-    <img src="assets/hero.jpg" alt="Code editor showing a React component, part of a recent development project.">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Zoé Adam</div>
+    <h1>
+      <span>Design that</span>
+      <span>holds up in code.</span>
+    </h1>
+    <p class="hero-sub">Graphic designer and web developer. I build brand and web work end to end — from the first sketch to a site that actually ships.</p>
+    <div class="hero-links">
+      <a class="pill solid" href="work.html">See the work</a>
+      <a class="pill" href="contact.html">Get in touch</a>
+    </div>
   </div>
 </section>
 
