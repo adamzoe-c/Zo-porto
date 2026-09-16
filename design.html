@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design — Zoé Adam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: #FFFFFF;
+  --paper-2: #F0F0F0;
+  --ink: #111111;
+  --ink-soft: #5B5B5B;
+  --accent: #111111;
+  --accent-2: #000000;
+  --line: #CFCFCF;
+  --shadow: rgba(0,0,0,0.12);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0E0E0E;
+    --paper-2: #1A1A1A;
+    --ink: #F5F5F5;
+    --ink-soft: #A6A6A6;
+    --accent: #F5F5F5;
+    --accent-2: #FFFFFF;
+    --line: #333333;
+    --shadow: rgba(0,0,0,0.5);
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0E0E0E;
+  --paper-2: #1A1A1A;
+  --ink: #F5F5F5;
+  --ink-soft: #A6A6A6;
+  --accent: #F5F5F5;
+  --accent-2: #FFFFFF;
+  --line: #333333;
+  --shadow: rgba(0,0,0,0.5);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Work Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+h1, h2, h3, .display {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+p { line-height: 1.65; color: var(--ink-soft); max-width: 62ch; }
+a { color: inherit; }
+section { padding: clamp(64px, 12vw, 128px) clamp(20px, 6vw, 64px); max-width: 1080px; margin: 0 auto; }
+
+/* Nav */
+nav {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; align-items: center; justify-content: center;
+  padding: 18px clamp(20px, 6vw, 64px);
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.logo { font-family: 'Fraunces', serif; font-size: 1.05rem; font-weight: 500; text-decoration: none; }
+.navlinks { display: flex; gap: clamp(14px, 3vw, 28px); font-size: 0.92rem; }
+.navlinks a { text-decoration: none; color: var(--ink-soft); transition: color 0.2s; }
+.navlinks a:hover, .navlinks a.active { color: var(--ink); }
+
+/* Hero */
+.hero {
+  padding-top: clamp(72px, 14vw, 140px);
+  padding-bottom: clamp(48px, 10vw, 96px);
+}
+.hero-eyebrow { font-size: 0.95rem; color: var(--ink-soft); margin-bottom: 18px; }
+.hero h1 {
+  font-size: clamp(3.2rem, 12vw, 7.5rem);
+  line-height: 0.92;
+  display: flex; flex-direction: column;
+}
+.hero h1 span {
+  opacity: 0;
+  transform: translateY(0.35em);
+  animation: rise 0.9s cubic-bezier(.2,.7,.2,1) forwards;
+}
+.hero h1 span:nth-child(2) {
+  animation-delay: 0.12s;
+  font-style: italic;
+  color: #E0923C;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .hero h1 span:nth-child(2) { color: #F0A94E; }
+}
+:root[data-theme="dark"] .hero h1 span:nth-child(2) { color: #F0A94E; }
+@keyframes rise { to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) {
+  .hero h1 span { animation: none; opacity: 1; transform: none; }
+}
+.hero-sub { margin-top: 28px; max-width: 42ch; font-size: 1.1rem; }
+.hero-links { margin-top: 36px; display: flex; gap: 20px; flex-wrap: wrap; }
+.hero-image {
+  margin-top: clamp(48px, 9vw, 88px);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px -28px var(--shadow);
+}
+.hero-image img { display: block; width: 100%; height: auto; max-height: 70vh; object-fit: cover; }
+
+.pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 20px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 0.92rem;
+  color: var(--ink);
+  transition: border-color 0.2s, background 0.2s;
+}
+.pill.solid { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.pill:hover { border-color: var(--ink); }
+.pill.solid:hover { background: var(--accent-2); border-color: var(--accent-2); }
+
+/* Section headers */
+.sec-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 48px; flex-wrap: wrap; }
+.sec-head h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); }
+.sec-head p { margin: 0; font-size: 0.98rem; }
+
+/* Work / case studies */
+.case {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 40px;
+  align-items: center;
+  padding: 36px 0;
+  border-top: 1px solid var(--line);
+}
+.case:last-of-type { border-bottom: 1px solid var(--line); }
+@media (max-width: 760px) { .case { grid-template-columns: 1fr; } }
+.case-visual {
+  aspect-ratio: 4/3;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  background: var(--paper-2);
+  box-shadow: 0 18px 40px -22px var(--shadow);
+}
+.case-visual svg { width: 100%; height: 100%; display: block; }
+.case-copy h3 { font-size: 1.6rem; margin-bottom: 10px; }
+.case-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+.tag {
+  font-size: 0.78rem; padding: 4px 11px; border-radius: 999px;
+  background: var(--paper-2); color: var(--ink-soft); border: 1px solid var(--line);
+}
+.case-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 18px; font-size: 0.92rem; text-decoration: none;
+  border-bottom: 1px solid var(--ink); padding-bottom: 2px; color: var(--ink);
+}
+.case-soon {
+  padding: 28px 0; border-top: 1px solid var(--line);
+  display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap;
+}
+.case-soon h3 { font-size: 1.15rem; font-weight: 500; color: var(--ink-soft); }
+.case-soon .tag { opacity: 0.8; }
+
+/* Design gallery */
+.gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media (max-width: 700px) { .gallery { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 460px) { .gallery { grid-template-columns: 1fr; } }
+.swatch {
+  aspect-ratio: 3/4; border-radius: 6px; position: relative;
+  display: flex; align-items: flex-end; padding: 16px;
+  overflow: hidden;
+}
+.swatch span { position: relative; z-index: 1; font-size: 0.88rem; color: var(--paper); }
+.swatch::after {
+  content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.45) 100%);
+}
+
+/* About */
+.about-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 56px; }
+@media (max-width: 760px) { .about-grid { grid-template-columns: 1fr; } }
+.skills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+.skills .tag { background: transparent; }
+
+/* Contact */
+.contact { text-align: left; }
+.contact h2 { font-size: clamp(2.2rem, 6vw, 3.6rem); max-width: 14ch; }
+.contact-list { margin-top: 40px; display: flex; flex-direction: column; gap: 0; }
+.contact-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 18px 0; border-top: 1px solid var(--line);
+  text-decoration: none; color: var(--ink);
+}
+.contact-list .contact-row:last-child { border-bottom: 1px solid var(--line); }
+.contact-row .label { color: var(--ink-soft); font-size: 0.92rem; }
+.contact-row .value { font-family: 'Fraunces', serif; font-size: 1.15rem; }
+.contact-row .arrow { color: var(--ink); opacity: 0; transition: opacity 0.2s, transform 0.2s; transform: translateX(-4px); }
+.contact-row:hover .arrow { opacity: 1; transform: translateX(0); }
+
+footer {
+  padding: 28px clamp(20px,6vw,64px) 40px;
+  display: flex; justify-content: space-between; color: var(--ink-soft); font-size: 0.85rem;
+  max-width: 1080px; margin: 0 auto; flex-wrap: wrap; gap: 8px;
+}
+
+a:focus-visible, .pill:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="navlinks">
+    <a href="index.html">Home</a>
+    <a href="work.html">Work</a>
+    <a href="design.html" class="active">Design</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<section id="design">
+  <div class="sec-head">
+    <h2>Graphic design</h2>
+    <p>Selected pieces, added as they're ready.</p>
+  </div>
+  <div class="gallery">
+    <div class="swatch" style="background: linear-gradient(135deg, #6E6E6E, #1A1A1A);"><span>Branding</span></div>
+    <div class="swatch" style="background: linear-gradient(135deg, #4A4A4A, #000000);"><span>Editorial</span></div>
+    <div class="swatch" style="background: linear-gradient(135deg, #9A9A9A, #3D3D3D);"><span>Print</span></div>
+  </div>
+</section>
+
+<footer>
+  <span>Zoé Adam — Graphic Design &amp; Web Development</span>
+  <span id="year"></span>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = '© ' + new Date().getFullYear();
+</script>
+
+</body>
+</html>
